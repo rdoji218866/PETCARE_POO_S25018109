@@ -13,6 +13,8 @@ public abstract class Persona {
         this.correo = correo;
     }
 
+
+
     public String getNombre() {
         return nombre;
     }

@@ -1,4 +1,5 @@
 package modelo.servicios;
+import modelo.mascotas.Mascota;
 
 import java.util.Date;
 
@@ -6,19 +7,24 @@ public class ConsultaGeneral implements Cobrable {
     private int tarifaBase;
     private EstadoCita estado;
     private Date fecha;
-    private Cobrable servicioAdicional;
+    private final Mascota mascotaAtendidad;
 
-    public ConsultaGeneral(int tarifaBase,  Date fecha) {
+    public ConsultaGeneral(int tarifaBase, Mascota mascotaAtendidad,  Date fecha) {
         this.tarifaBase = tarifaBase;
+        this.mascotaAtendidad = mascotaAtendidad;
         this.estado = EstadoCita.Programada;
     }
-
-    public int getTarifaBase() {
-        return tarifaBase;
+    public Mascota getMascotaAtendidad() {
+        return mascotaAtendidad;
     }
 
-    public void setTarifaBase(int tarifaBase) {
-        this.tarifaBase = tarifaBase;
+    public void atenderCita() {
+        if(estado == EstadoCita.Programada) this.estado = EstadoCita.Atendida;
+        generarComprobante();
+    }
+    public void cancelarCita() {
+        if(estado == EstadoCita.Programada) this.estado = EstadoCita.Cancelada;
+        generarComprobante();
     }
 
     @Override
@@ -28,6 +34,17 @@ public class ConsultaGeneral implements Cobrable {
 
     @Override
     public void generarComprobante() {
-        System.out.println("Comprobante Consulta General - Costo: $" + calcularCosto());
+        if (estado == EstadoCita.Atendida) {
+            System.out.println("Mascota atendida: " + mascotaAtendidad.getNombre());
+            System.out.println("Fecha atendida: " + fecha);
+            System.out.println("Precio por consulta: " + calcularCosto());
+        }else if (estado == EstadoCita.Cancelada) {
+            System.out.println("Mascota: " + mascotaAtendidad.getNombre());
+            System.out.println("Su consulta fue cancelada");
+        }else{
+            System.out.println("Esta cita no ha sido atendida.");
+            System.out.println("Mascota a atender:  " + mascotaAtendidad.getNombre());
+            System.out.println("Fecha de cita: " + fecha);
+        }
     }
 }

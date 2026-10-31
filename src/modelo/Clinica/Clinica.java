@@ -7,7 +7,6 @@ import modelo.personas.Veterinario;
 import java.util.HashSet;
 import java.util.Set;
 
-
 public class Clinica {
     private String nombre;
     private int telefono;
@@ -21,45 +20,28 @@ public class Clinica {
         this.direccion = direccion;
         this.consultorios = new HashSet<>();
         this.personal = new HashSet<>();
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public int getTelefono() {
-        return telefono;
-    }
-
-    public void setTelefono(int telefono) {
-        this.telefono = telefono;
-    }
-
-    public String getDireccion() {
-        return direccion;
-    }
-
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
+        consultorios.add(new Consultorio(1));
     }
 
     public Set<Consultorio> getConsultorios() {
         return consultorios;
     }
 
-    public void setConsultorios(Set<Consultorio> consultorios) {
-        this.consultorios = consultorios;
+    public Set<Consultorio> mostrarConsultorio() {
+        return consultorios;
+    }
+
+    public void agregarConsultorio(int cantidad) {
+        for (int i = 0; i < cantidad; i++) {
+            consultorios.add(new Consultorio(consultorios.size()+ 1));
+        }
     }
 
     public Set<Persona> getPersonal() {
         return personal;
     }
 
-    public void setPersonal(Set<Persona> personal) {
+    public void agregarPersonal(Set<Persona> personal) {
         this.personal = personal;
     }
 }

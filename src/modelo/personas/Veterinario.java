@@ -1,8 +1,12 @@
 package modelo.personas;
 
+import modelo.Clinica.Consultorio;
+
 public class Veterinario extends Persona {
-    private int cedulaProfesional;
-    private String especialidad;
+    private final int cedulaProfesional;
+    private final String especialidad;
+    private Consultorio consultorio;
+
 
     public Veterinario(String nombre, String apellido, int telefono, String correo, int cedulaProfesional, String especialidad) {
         super(nombre, apellido, telefono, correo);
@@ -16,19 +20,26 @@ public class Veterinario extends Persona {
         this.especialidad = especialidad;
     }
 
-    public int getCedulaProfesional() {
-        return cedulaProfesional;
+    public Consultorio consultarConsultorio() {
+        return consultorio;
     }
 
-    public void setCedulaProfesional(int cedulaProfesional) {
-        this.cedulaProfesional = cedulaProfesional;
+    public void cambiarConsultorio(Consultorio consultorio) {
+        this.consultorio = consultorio;
+    }
+
+    //sobreescribo el metodo hashcode para evitar duplicados en el personal de la clinica
+    @Override
+    public int hashCode() {
+        return Integer.hashCode(cedulaProfesional);
+    }
+
+    public int getCedulaProfesional() {
+        return cedulaProfesional;
     }
 
     public String getEspecialidad() {
         return especialidad;
     }
 
-    public void setEspecialidad(String especialidad) {
-        this.especialidad = especialidad;
-    }
 }

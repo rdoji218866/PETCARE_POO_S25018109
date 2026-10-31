@@ -5,7 +5,7 @@ el equipo de desarrollo: debes entender el problema, modelarlo y construirlo.
 
 ## Tecnologias
 
-## modelo de Solucion
+## Modelo de Solucion
 
 ## Estructura del proyecto
 

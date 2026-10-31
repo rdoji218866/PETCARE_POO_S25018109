@@ -1,19 +1,19 @@
 package modelo.servicios;
 
+import modelo.mascotas.Mascota;
+
+import java.util.Date;
+
 public class Cirugia implements Cobrable {
-    private String nombreCirugia;
+    private final Mascota mascotaAtendidad;
     private Complejidad complejidad;
-    public Cirugia(String nombreCirugia, Complejidad complejidad, EstadoCita estado) {
-        this.nombreCirugia = nombreCirugia;
+    EstadoCita estado;
+    private Date fecha;
+
+    public Cirugia(String nombreCirugia, Complejidad complejidad, Mascota mascotaAtendidad,Date fecha) {
+        this.mascotaAtendidad = mascotaAtendidad;
         this.complejidad = complejidad;
-    }
-
-    public String getNombreCirugia() {
-        return nombreCirugia;
-    }
-
-    public void setNombreCirugia(String nombreCirugia) {
-        this.nombreCirugia = nombreCirugia;
+        this.estado = EstadoCita.Programada;
     }
 
     public Complejidad getComplejidad() {
@@ -22,6 +22,15 @@ public class Cirugia implements Cobrable {
 
     public void setComplejidad(Complejidad complejidad) {
         this.complejidad = complejidad;
+    }
+
+    public void atenderCita() {
+        if(estado == EstadoCita.Programada) this.estado = EstadoCita.Atendida;
+        generarComprobante();
+    }
+    public void cancelarCita() {
+        if(estado == EstadoCita.Programada) this.estado = EstadoCita.Cancelada;
+        generarComprobante();
     }
 
     @Override
@@ -38,6 +47,17 @@ public class Cirugia implements Cobrable {
 
     @Override
     public void generarComprobante() {
-        System.out.println("Comprobante por cirugia [" + complejidad + "]. Precio: " + calcularCosto());
+        if (estado == EstadoCita.Atendida) {
+            System.out.println("Mascota atendida: " + mascotaAtendidad.getNombre());
+            System.out.println("Fecha atendida: " + fecha);
+            System.out.println("Precio por cirugia ["+complejidad+"]: "+ calcularCosto());
+        }else if (estado == EstadoCita.Cancelada) {
+            System.out.println("Mascota: " + mascotaAtendidad.getNombre());
+            System.out.println("Su cirugia fue cancelada");
+        }else{
+            System.out.println("Esta cita no ha sido atendida.");
+            System.out.println("Mascota a atender:  " + mascotaAtendidad.getNombre());
+            System.out.println("Fecha de cita: " + fecha);
+        }
     }
 }
