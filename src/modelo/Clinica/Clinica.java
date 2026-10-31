@@ -1,6 +1,9 @@
-package Modelo.Clinica;
+package modelo.Clinica;
 
-import Modelo.Personas.Persona;
+import modelo.personas.Persona;
+import modelo.personas.Recepcionista;
+import modelo.personas.Veterinario;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -12,7 +15,7 @@ public class Clinica {
     private Set<Consultorio> consultorios;
     private Set<Persona> personal;
 
-    public Clinica(String nombre, int telefono, String direccion) {
+    public Clinica(String nombre, int telefono, String direccion, Recepcionista recepcionista, Veterinario veterinario) {
         this.nombre = nombre;
         this.telefono = telefono;
         this.direccion = direccion;

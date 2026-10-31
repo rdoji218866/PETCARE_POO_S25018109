@@ -1,4 +1,4 @@
-package Modelo.Clinica;
+package modelo.Clinica;
 
 public class Consultorio {
     private int numero;
@@ -11,7 +11,5 @@ public class Consultorio {
         return numero;
     }
 
-    public void setNumero(int numero) {
-        this.numero = numero;
-    }
+    public void setNumero(int numero) {}
 }

@@ -1,4 +1,4 @@
-package Modelo.Clinica;
+package modelo.servicios;
 
 public enum EstadoCita {
     Programada,

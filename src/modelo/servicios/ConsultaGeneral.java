@@ -1,10 +1,16 @@
-package Modelo.Servicios;
+package modelo.servicios;
+
+import java.util.Date;
 
 public class ConsultaGeneral implements Cobrable {
     private int tarifaBase;
+    private EstadoCita estado;
+    private Date fecha;
+    private Cobrable servicioAdicional;
 
-    public ConsultaGeneral(int tarifaBase) {
+    public ConsultaGeneral(int tarifaBase,  Date fecha) {
         this.tarifaBase = tarifaBase;
+        this.estado = EstadoCita.Programada;
     }
 
     public int getTarifaBase() {

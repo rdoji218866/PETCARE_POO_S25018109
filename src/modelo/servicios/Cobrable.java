@@ -1,4 +1,4 @@
-package Modelo.Servicios;
+package modelo.servicios;
 
 public interface Cobrable {
     int calcularCosto();

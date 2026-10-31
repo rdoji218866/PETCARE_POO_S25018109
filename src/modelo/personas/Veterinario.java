@@ -1,4 +1,4 @@
-package Modelo.Personas;
+package modelo.personas;
 
 public class Veterinario extends Persona {
     private int cedulaProfesional;

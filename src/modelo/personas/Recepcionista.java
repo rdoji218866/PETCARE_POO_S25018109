@@ -1,4 +1,4 @@
-package Modelo.Personas;
+package modelo.personas;
 
 public class Recepcionista extends Persona {
     private Turno turno;
@@ -10,7 +10,7 @@ public class Recepcionista extends Persona {
 
     public Recepcionista(Turno turno) {
         super("", "", 0, "");
-        this.turno = turno;
+        this.turno = Turno.Sin_turno;
     }
 
     public Turno getTurno() {
@@ -18,6 +18,11 @@ public class Recepcionista extends Persona {
     }
 
     public void setTurno(Turno turno) {
-        this.turno = turno;
+        if (this.turno == turno) {
+            System.out.println("El recepcionista ya esta en ese turno");
+        }else {
+            this.turno = turno;
+            System.out.println("El recepcionista ahora estara en el turno "+ getTurno());
+        }
     }
 }
